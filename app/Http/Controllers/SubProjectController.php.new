@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Models\Project;
+use App\Models\Subproject;
+use Illuminate\Http\Request;
+
+class SubProjectController extends Controller
+{
+    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function index(Project $project)
+    {
+        // $user = auth()->user();
+        // dd($user);
+        $subprojects = $project->subprojects()->paginate(50);
+        // $projects = Project::paginate(10);
+        return view('subprojects', compact('subprojects', 'project'));
+    }
+    public function store(Request $request, Project $project)
+    {
+        // $user =  auth()->user();
+        $data = [
+            'name' => $request->input('name'),
+        ];
+        // $create_project = $user->projects()->create($data);
+        $create_subproject = $project->subprojects()->create($data);
+
+        if ($create_subproject) {
+            // return (redirect()->route('projects.index', $user));
+            return back();
+        }
+        return (redirect()->route('projects.index')->with("error creating sub project!!"));
+    }
+    public function destroy(Subproject $subproject)
+    {
+        if ($subproject->delete()) {
+            return back()->with('message', 'Sub Project "' . $subproject->name . '" Deleted successfully!');
+        }
+        return back()->with('error', 'Delete Failed!');
+    }
+}

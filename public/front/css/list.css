@@ -1,0 +1,92 @@
+.listProfile{
+    background: #efefef;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.strike-text {
+    color: red;
+    text-decoration: line-through
+}
+
+.product-image {
+    width: 180px;
+    height: 180px;
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 3px;
+    background-color: #ff10a0;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.spec-1 {
+    color: #ff10a0;
+    font-size: 13px
+}
+
+h5 {
+    font-weight: 400
+}
+
+.para {
+    font-size: 14px
+}
+
+.slider-area{  
+    background: #efefef;
+    position: relative;
+    padding: 25px 42px;
+}
+
+.search-sec{
+    padding: 2rem;
+}
+.search-sec .search-slt{
+    display: block;
+    width: 100%;
+    line-height: 1.5;
+    color: #101820;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.search-sec .wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    color: #101820;
+    font-weight: 600;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+    background: #f2aa4c;
+    border-color: #f2aa4c;
+}
+
+
+/*****************/
+
+.whatsappBtn{
+    background: #075e26;
+    text-align: center;
+    padding: 5px 0;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.callNow{
+    background: #f2aa4c;
+    text-align: center;
+    padding: 5px 0;
+    color: #101820;
+    border-radius: 2px;
+    text-decoration: none;
+}

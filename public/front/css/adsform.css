@@ -1,0 +1,129 @@
+body {
+    background: #eee
+}
+
+.adForm{
+    margin: 0 auto;
+    width: 70%;
+}
+
+.adForm nav > .nav.nav-tabs{
+    border: none;
+    color:#fff;
+    background:#272e38;
+    border-radius:0;    
+
+}
+.adForm nav > div a.nav-item.nav-link
+{
+  border: none;
+    padding: 18px 25px;
+    color:#fff;
+    background:#272e38;
+    border-radius:0;
+}
+
+.adForm nav > div a.nav-item.nav-link.active{
+    background: #f2aa4c;
+}
+
+.adForm nav > div a.nav-item.nav-link.active:after
+ {
+  content: "";
+  position: relative;
+  bottom: -60px;
+  left: -10%;
+  border: 15px solid transparent;
+  border-top-color: #f2aa4c ;
+}
+.adForm .tab-content{
+  background: #fdfdfd;
+    line-height: 25px;
+    border: 1px solid #ddd;
+    border-top:5px solid #f2aa4c;
+    border-bottom:5px solid #f2aa4c;
+    padding:30px 25px;
+}
+
+.adForm nav > div a.nav-item.nav-link:hover,
+.adForm nav > div a.nav-item.nav-link:focus
+{
+  border: none;
+    background: #f2aa4c;
+    color:#fff;
+    border-radius:0;
+    transition:background 0.20s linear;
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 0px auto;
+    padding: 40px;
+    border-radius: 10px
+}
+
+h1 {    
+    font-size: 20px;
+}
+
+input, textarea, select{
+    padding: 8px;
+    width: 100%;
+    font-size: 15px;
+    border: 1px solid #c3c3c3;
+    border-radius: 4px;
+}
+
+input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline: none;
+}
+
+input.invalid {
+    background-color: #ffdddd
+}
+
+.tab {
+    display: none
+}
+
+button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    cursor: pointer
+}
+
+button:hover {
+    opacity: 0.8
+} 
+
+.groupTitle{
+    background: #ededed;
+    position: absolute;
+    font-size: 15px;
+    padding: 0 18px;
+    top: -24px;
+    color: #605f5f;
+    border: 1px solid #d3d3d3;
+    border-bottom: none;
+}
+
+
+
+.groupInfo{
+    background: #ededed;
+    padding: 25px 20px 25px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid #d3d3d3;
+    margin: 30px 10px;
+}
+
+.redstar{
+    color: #e71e1e;
+    font-size: 18px;
+    line-height: 8px;
+}

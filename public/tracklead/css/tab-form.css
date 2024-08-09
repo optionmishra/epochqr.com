@@ -1,0 +1,269 @@
+.form-wrapper{
+
+}
+
+
+.form-wrapper .nav-pills-custom .nav-link {
+    color: #020202;
+    background: #ededed;
+    position: relative;
+}
+
+.form-wrapper .nav-pills-custom .nav-link.active {
+    color: #ffffff;
+    background: #282f3a;
+}
+
+.form-wrapper .form-control[readonly] {
+    background-color: #ffffff;
+    opacity: 1;
+}
+
+.form-wrapper .note-editor.note-airframe .note-editing-area .note-editable, 
+.form-wrapper .note-editor.note-frame .note-editing-area .note-editable{
+    font-size: 13px;
+}
+
+/* Add indicator arrow for the active tab */
+@media (min-width: 992px) {
+    .form-wrapper .nav-pills-custom .nav-link::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #282f3a;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+}
+
+.form-wrapper .nav-pills-custom .nav-link.active::before {
+    opacity: 1;
+}
+
+.form-wrapper .tab-content{
+    background: #f7f7f7;
+    padding: 15px 0;
+}
+
+.form-wrapper .form-check{
+	width: 33%;
+	text-transform: capitalize;
+    float: left;
+}
+
+.form-wrapper .custom-file{
+	height: auto;
+}
+
+.form-wrapper h4{
+	font-size: 16px;
+    color: #222;
+}
+
+label.fancy{
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-wrapper .form-control{
+	border-radius: 2px;
+    font-size: 13px;
+}
+
+.help{
+    font-size: 11px;
+    color: #858796;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.form-wrapper .selectize-control.plugin-remove_button .remove-single{
+    position: absolute;
+    right: 27px;
+    top: 9px;
+    font-size: 18px;
+}
+
+.form-wrapper .btn-info{
+    border: none;
+    padding: 4px 15px;
+    border-radius: 2px;
+}
+
+.help_status{
+    background: #282f3a;
+    color: #fff;
+    padding: 0 4px;
+    line-height: 5px;
+    border-radius: 10px;
+    font-size: 10px;
+    position: relative;
+    top: -1px;
+    cursor: pointer;
+}
+
+.form-wrapper .btn-save{
+
+}
+
+.form-wrapper .btn-save-continue{
+
+}
+
+.form-wrapper .btn-postback.btn-info{
+    padding: 2px 8px;
+    font-size: 13px;
+}
+
+.addMore{
+    color: #fff;
+    background-color: #17a2b8;
+    border: none;
+    width: 25px;
+}
+
+.removeMore{
+    color: #282f3a;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    width: 25px;
+}
+
+.btnAddOS{
+
+}
+
+.form-wrapper .accordion{
+
+}
+
+.form-wrapper .accordion .card{
+    border: none;
+}
+
+.form-wrapper .accordion .card-header{
+    background: transparent;
+    border-bottom: none;
+    padding: 2px 0;
+    text-align: left;
+}
+
+.form-wrapper .accordion .card-header .btn{
+    text-align: left;
+    border: none;
+    font-size: 15px;
+    border-radius: 0;
+    padding: 13px 13px;
+    font-weight: 500;
+}
+
+.form-wrapper .accordion .card-header .btn i{
+    font-size: 14px;
+    float: right;
+    font-weight: 800;
+}
+
+.form-wrapper .accordion .card-body{
+    padding: 0 12px;
+    margin-top: 10px;
+}
+
+.form-wrapper btn.focus, .form-wrapper .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.form-wrapper .btn:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.form-wrapper .btnAffiliate{
+    padding: 5px 7px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+}
+
+.capsTable{
+    background: #fff;
+}
+
+.capsTable.table thead th{
+    border-bottom: none;
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.capsTable.table tbody td{
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.form-wrapper .capsTable.table tbody td .form-control{
+    padding: 0 2px;
+}
+
+.selectWrap{
+    width: 26%;
+    float: left;
+}
+
+.AffWrap{
+    width: 74%;
+    float: left;
+}
+
+.customSelect{
+    padding: 7px 0;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    font-size: 13px;
+}
+
+.form-wrapper .tab-content>.tab-pane{
+   
+}
+
+.form-wrapper .multipleDesc .tab-content{
+    background: #fff;
+    padding: 10px 20px;
+    border: 1px solid #ced4da;
+}
+
+.form-wrapper .multipleDesc .nav-link{
+    color: #282f3a;
+    font-size: 14px;
+}
+
+.form-wrapper .multipleDesc .nav-tabs{
+    border-bottom: none;
+}
+
+.form-help{
+    font-size: 11px;
+    color: #858796;
+    font-weight: 500;
+}
+
+.CategoryWrap{
+    
+}
+
+.CategoryWrap span{
+    padding: 7px 11px;
+    position: absolute;
+    top: -5px;
+    height: 36px;
+    cursor: pointer;
+}
+
+ul.form-help {
+    padding-left: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-style: italic;
+}

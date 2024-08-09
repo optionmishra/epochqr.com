@@ -1,0 +1,83 @@
+.wrapper {
+    min-height: calc(100vh - 81px);
+    /* background-color: #f5fdfd; */
+}
+
+/* .slider-area{
+    background: #181818 url(/front/images/home-slide.jpeg) repeat-x;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 80px 42px;
+}
+
+.slider-area h1{
+    font-size: 38px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.slider-area p{
+    color: #fff;
+}
+
+.slider-area a{
+    font-weight: 600;
+    background: #f2aa4c;
+    padding: 7px 15px;
+    font-size: 16px;
+    color: #101820;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.search-sec{
+    background: #101820;
+    padding: 2rem;
+}
+.search-sec .search-slt{
+    display: block;
+    width: 100%;
+    line-height: 1.5;
+    color: #101820;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.search-sec .wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    color: #101820;
+    font-weight: 600;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+    background: #f2aa4c;
+    border-color: #f2aa4c;
+}
+
+.adsBox{
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.adsBox a{
+    text-decoration: none;
+}
+
+.contentBox .title{
+    background: #f2aa4c;
+    color: #101820FF;
+    font-size: 18px;
+    text-align: center;
+    padding: 6px 0;
+    font-weight: 600;
+}
+
+.contentBox .desc{
+    color: #101820FF;
+    padding: 5px 6px;
+} */

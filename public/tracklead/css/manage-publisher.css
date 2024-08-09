@@ -1,0 +1,489 @@
+.managerStag {
+    padding: 5px 0px;
+    border-radius: 100px;
+}
+
+.managerStag img {
+    width: 25px;
+    border-radius: 50px;
+}
+
+.list {
+    border: 1px solid #c9c9c9;
+}
+
+.list .table {
+    margin-bottom: 0;
+}
+
+.list .table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.list .table tr:hover {
+    background: #d7d7d7 !important;
+    cursor: pointer;
+}
+
+.isChecked {
+    background: #d7d7d7 !important;
+    color: #67708b !important;
+}
+
+.list .table tr.isChecked td {
+    color: #67708b !important;
+}
+
+.list .table tr.isChecked td a {
+    color: #67708b;
+}
+
+.list .table tr th {
+    font-size: 12px;
+    color: #f8f8f8;
+    background: #67708b;
+    padding: 5px 10px;
+    border-left: 1px solid #f3f3f3;
+    font-weight: 200;
+}
+
+.list .table tr:nth-child(odd) {
+    background: #f3f3f3;
+    color: #363636;
+}
+
+.list .table tr:nth-child(odd) td {
+    color: #363636;
+}
+
+.list .table tr td {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #363636;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-left: 1px solid #f3f3f3;
+}
+
+.list .table tbody:before {
+    content: "-";
+    display: block;
+    line-height: 5px;
+    color: transparent;
+}
+
+.list .table tr td .nav-link {
+    padding: 0;
+}
+
+.list .table td,
+.list .table th {
+    padding: 0.5rem;
+}
+
+.list .table tr td a {
+    color: #363636;
+}
+
+.list .table tr td .dropdown-menu {
+    box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+    border: none;
+}
+
+.list .table tr td .dropdown-menu .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.35rem 1.5rem;
+    clear: both;
+    font-size: 12px;
+    color: #5a5a59;
+    font-weight: 600;
+}
+
+.list .table tr td p i {
+    font-size: 10px;
+    margin-right: 2px;
+}
+
+.paginate .pagination {
+    float: right;
+    margin: 5px 0;
+}
+
+.paginate .pagination .page-link {
+    color: #2e4887;
+    font-size: 12px;
+}
+
+.paginate .pagination .page-link {
+    padding: 5px 8px;
+}
+
+.paginate .pagination .page-item:first-child .page-link {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.paginate .pagination .page-item:last-child .page-link {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.totalResult p {
+    font-size: 12px;
+    color: #2e4887;
+}
+
+.linkFilter {
+    padding: 0 3px;
+}
+
+.linkFilter .selectize-input {
+    padding: 6px 8px;
+}
+
+.cTable tbody tr td {
+    white-space: nowrap;
+    padding: 5px 8px;
+}
+.cTable thead th {
+    padding: 5px 8px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.dateFilter {
+}
+
+.dateFilter #reportrange {
+    float: none;
+    font-size: 11px;
+    margin-bottom: 0;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.dateFilter form {
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.dateFilter form i {
+    position: relative;
+    top: 0px;
+    font-size: 12px;
+}
+
+.dateFilter form #date_filter {
+    border: none;
+    font-size: 13px;
+    color: #687b88;
+    cursor: pointer;
+}
+
+.dateFilter form #date_filter:focus {
+    outline: none;
+}
+
+.dateFilter form button {
+    border: none;
+    font-size: 13px;
+    color: #ffffff;
+    background: #50bfff;
+    border-radius: 2px;
+    line-height: 18px;
+    padding: 3px 8px;
+}
+
+.topFilter {
+    display: block;
+    flex-wrap: nowrap;
+    padding: 10px 8px;
+    background: #fff;
+}
+
+.topFilter span {
+    font-size: 13px;
+    margin-right: 2px;
+}
+
+.topFilter span.totalResult {
+    font-style: normal;
+    border-right: 1px solid #ddd;
+    padding-right: 5px;
+}
+
+.topFilter form.SearchForm .selectize-input {
+    padding: 6px 15px;
+}
+
+.topFilter form.SearchForm .form-control {
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.topFilter form.SearchForm .selectize-multiple .selectize-dropdown {
+    margin: 0px 0 0 0;
+    width: 210px !important;
+}
+
+.topFilter form.SearchForm .selectize-control,
+.topFilter .selectize-input {
+    height: 32px;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.topFilter form.SearchForm .selectize-control.plugin-remove_button .item {
+    display: inline-block;
+    align-items: center;
+    padding-right: 0 !important;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.topFilter form.SearchForm .selectize-control.plugin-remove_button .item {
+    display: inline-block;
+    align-items: center;
+    padding-right: 0 !important;
+    width: 60px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.topFilter .result-status {
+    display: inline-flex;
+    margin-right: 10px;
+}
+
+.topFilter .result-status p {
+    margin: 0 0 0;
+    position: relative;
+    top: -12px;
+}
+
+.topFilter .filterSelect {
+    display: inline-flex;
+}
+
+form.ClickForm {
+    display: block;
+    flex-wrap: wrap;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    top: 0px;
+    padding: 1px 4px;
+    position: relative;
+}
+
+form.ClickForm [type="search"] {
+    border: none;
+    width: 85%;
+    background: #fff;
+    float: left;
+    height: 24px;
+    font-size: 12px;
+    padding: 0 8px;
+}
+
+form.ClickForm button {
+    border: none;
+    font-size: 14px;
+    color: #979090;
+    background: #fff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    display: inline-block;
+    width: 15%;
+    height: 20px;
+    padding: 1px 0;
+    border-left: 1px solid #eee;
+}
+
+form.ClickForm i {
+    top: 3px;
+}
+
+.btn-add {
+    float: right;
+    position: relative;
+    top: -4px;
+}
+
+.status-select {
+    width: auto;
+    padding: 0 0;
+    height: 28px;
+    border-radius: 3px;
+    font-size: 13px;
+    position: relative;
+    top: -4px;
+}
+
+.btn:focus,
+.btn.focus {
+    box-shadow: none;
+}
+
+.bulkactionDropdown {
+    position: relative;
+}
+
+.btn-bulkaction {
+    font-size: 13px;
+    border: 1px solid #282f3a;
+    border-radius: 2px;
+    background: #282f3a;
+    color: #fff;
+    padding: 6px 8px;
+    height: 32px;
+}
+
+.btnAction {
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #606060;
+}
+
+.topFilter form [type="search"]:focus-visible {
+    outline: none;
+}
+
+.topFilter .dropdown-menu {
+    box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+    border: none;
+    padding: 0 0;
+}
+
+.btnAction i {
+    font-size: 10px;
+}
+
+.btnAction:hover {
+    background: #eee;
+}
+
+.btnAction:focus,
+.btn-bulkaction:focus {
+    outline: none;
+}
+
+.title {
+    font-weight: 500;
+}
+
+.reportWrapper .cTable thead th {
+    border: 1px solid #ebe9f1;
+    padding: 6px 4px;
+}
+
+.reportWrapper .cTable tbody td {
+    border: 1px solid #ebe9f1;
+}
+
+.reportWrapper .cTable tbody td .OfferTitle {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.reportWrapper .cTable tbody td .OfferAdvertiser {
+    width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.reportWrapper .form-check-inline {
+    font-size: 12px;
+}
+
+.form-check-inline .form-check-input {
+    opacity: 0.4;
+}
+
+.reportWrapper .btnFilterWrap {
+    float: right;
+    display: inline-block;
+}
+
+.reportWrapper .btnFilterWrap .btn-simple {
+    height: 28px;
+}
+
+.reportWrapper form.ClickForm {
+    display: inline-block;
+}
+
+.reportWrapper .absControl {
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+
+.btnBulk {
+    background: transparent;
+    border: none;
+    color: #2e4887;
+    font-size: 13px;
+    line-height: 20px;
+    border-radius: 2px;
+    padding: 4px 10px;
+}
+
+.btnBulk:hover {
+    background: #f3f3f3;
+}
+
+.btnBulk:focus {
+    outline: none;
+}
+
+/****************************/
+
+.reportWrapper .form-check-inline label span {
+    text-align: center;
+    display: block;
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 7px 12px;
+    cursor: pointer;
+    color: #bfbfbf;
+}
+
+.reportWrapper .form-check-inline label input {
+    position: absolute;
+    top: -20px;
+}
+
+.reportWrapper .form-check-inline input:hover + span {
+    background-color: #f3f3f3;
+}
+
+.reportWrapper .form-check-inline input:checked + span {
+    background-color: #67708b;
+    color: #fff;
+}
+
+.reportWrapper .form-check-inline input:checked:hover + span {
+    background-color: #67708b;
+    color: #fff;
+}

@@ -1,0 +1,59 @@
+.singlePost .profile-thumbnail{
+    padding: 10px;
+    margin: 15px 0 15px;
+    background: #fff;
+}
+
+.singlePost .profile-thumbnail img{
+
+}
+
+.singlePost .entryContent{
+    margin-top: 15px;
+}
+
+.singlePost .entryContent .entry-title{
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+.details-table {
+    background-color: #fff;
+    padding: 10px 15px 10px;
+    box-shadow: 0px 0px 38px 0px rgb(1 44 118 / 8%);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.details-table tr td {
+    padding: 8px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.singlePost .btn-telephone{
+    background: #f2aa4c;
+    color: #fff;
+}
+
+.singlePost .btn-whatsapp{
+    background: var(--green);
+    color: #fff;
+}
+
+.desc{
+
+}
+
+.primary-heading{
+	font-size: 20px;
+    color: #262626dd;
+}
+
+.desc h2{
+	
+}
+
+.desc p{
+	margin: 0 0 5px;
+}

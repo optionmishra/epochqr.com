@@ -1,0 +1,199 @@
+.form-wrapper{
+
+}
+
+.form-wrapper .form-header{
+    padding: 16px 10px 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-wrapper .form-header h5{
+	font-size: 15px;
+}
+
+.form-wrapper .form-header span{
+	margin-right: 15px;
+}
+
+.form-wrapper .form-header span i{
+	font-size: 25px;
+}
+
+.form-wrapper .form-header span a{
+    text-decoration: none;
+}
+
+.form-wrapper .nav-tabs .nav-link{
+    color: #505050;
+    border: none;
+}
+
+.form-wrapper .nav-tabs .nav-link.active{
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    color: #e80c5b;
+    
+}
+
+.form-wrapper .nav-tabs .nav-link:focus, .form-wrapper .nav-tabs .nav-link:hover{
+    border-color: transparent;
+}
+
+.form-wrapper .nav-tabs {
+    border-bottom: 1px solid #ededed;
+    background: #f5f6f8;
+}
+
+.form-wrapper .tab-content{
+
+}
+
+.form-body{
+	padding: 10px 15px 10px;
+}
+
+.form-body .form-control{
+	border-radius: 2px;
+    height: 36px;
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+.form-body label {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 5px;
+}
+
+.form-body .label2 {  
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+}
+
+.selectize-control.plugin-remove_button .remove-single {
+    position: absolute;
+    right: 22px;
+    top: 8px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.form-body textarea.form-control{
+    height: 100px;
+}
+
+.leftNav{
+
+}
+
+.leftNav a{
+    display: block;
+    font-size: 13px;
+    padding: 8px 6px;
+    background: #ffffff4a;
+    margin-bottom: 15px;
+    color: #7b8190;
+    text-decoration: none;
+}
+
+.leftNav a i{
+    font-size: 25px;
+}
+
+.redstar {
+    color: red;
+}
+
+/***********************/
+
+.deallogo .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.inputfile-4 + label figure {
+    width: 104px;
+    height: 110px;
+    border-radius: 4%;
+    background-color: #efefef;
+    display: block;
+    padding: 38px 0;    
+    text-align: center;
+    vertical-align: middle;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.deallogo #thumbnail {
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.deallogo #thumbnail .imgPreview {
+    width: 104px;
+    height: 110px;
+    border-radius: 5px;
+}
+
+.deallogo .pDiv{
+    text-align: left;
+}
+
+.deallogo img {
+    width: 104px;
+    height: 110px;
+    border-radius: 4%;
+    border: 1px solid #eee;
+}
+
+.previewDeletediv {
+    display: inline-block;
+    position: absolute;
+    right: -4px;
+    color: #fff;
+    font-weight: 700;
+    background: #dc3545;
+    font-size: 14px;
+    border-radius: 51px;
+    width: 20px;
+    height: 20px;
+    padding: 0px 6px 0px;
+    cursor: pointer;
+}
+
+.help{
+    font-size: 12px;
+    color: #2151ff;
+}
+
+.content .selectize-input{
+cursor: pointer;
+}

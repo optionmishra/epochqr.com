@@ -1,0 +1,64 @@
+.storeBox2{
+    box-shadow: 0 4px 8px 0 rgb(10 22 70 / 15%);
+    -webkit-box-shadow: 0 4px 8px 0 rgb(10 22 70 / 15%);
+    -moz-box-shadow: 0 4px 8px 0 rgba(10,22,70,0.15);
+    padding: 8px 8px;
+    border-radius: 5px;
+}
+
+.offerRow{
+
+}
+
+.storeBox2 .contentBox .title a{
+  color: #2b2a2a;
+  font-weight: 600;
+}
+
+.trendingCat{
+  padding: 0;
+  background: #fff;
+}
+
+.trendingCat .imageBox img{
+  border-radius: .25rem;
+}
+
+.trendingCat .contentBox .title{
+    padding: 10px 0;
+}
+
+.dark-grey{
+  background-color: #f9f2ff;
+}
+
+.secondary-nav{
+    border-bottom: 1px solid #eee;
+    padding: 8px 0 8px;
+}
+
+.secondary-nav .navLink{
+  
+}
+
+.secondary-nav .navLink .headNav{
+      font-size: 20px;
+    font-weight: 600;
+    margin-right: 3%;
+}
+
+.secondary-nav .navLink a{
+      font-size: 13px;
+    color: #8529cd;
+    margin-right: 7%;
+    font-weight: 500;
+}
+
+.staticContent .grid-layouts{
+  background: #fff;
+  padding: 20px 20px;
+}
+
+.fBox{
+    background: #fff;
+}
