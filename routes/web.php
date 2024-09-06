@@ -67,6 +67,7 @@ Route::post('/projects/add', [ProjectController::class, 'store'])->name('project
 Route::get('/delete-project/{project}', [ProjectController::class, 'destroy'])->name('projects.delete');
 Route::get('/archive-project/{project}', [ProjectController::class, 'archive'])->name('projects.archive');
 Route::get('/unarchive-project/{project}', [ProjectController::class, 'unarchive'])->name('projects.unarchive');
+Route::post('/update-project/{project}', [ProjectController::class, 'update'])->name('project.update');
 
 // QR Codes
 Route::get('/projects/{project:id}/qr-codes/', [QrController::class, 'index'])->name('qr-codes.index');

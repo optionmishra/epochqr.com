@@ -25,10 +25,10 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $user =  auth()->user();
-        $project_exist = $user->projects()->where('name', $request->input('name'))->get();
+        $project_exist = Project::where('name', $request->input('name'))->get();
 
         if ($project_exist->count() > 0) {
-            return back()->with('error', 'Project Already Exist!');
+            return back()->with('error', 'Project already exists, please choose a different name.');
         } else {
             $data = [
                 'name'         => $request->input('name'),
@@ -64,5 +64,42 @@ class ProjectController extends Controller
             return back()->with('success', 'Project unarchived successfully');
         }
         return back()->with('error', 'Project unarchive Failed');
+    }
+
+    public function update(Request $request, Project $project)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $oldName = $project->name;
+        $newName = $request->input('name');
+
+        if ($oldName !== $newName) {
+            // Correctly resolve the file paths using Laravel's helper functions
+            $oldPath = public_path('storage/campaign/' . str_replace(' ', '_', $oldName));
+            $newPath = public_path('storage/campaign/' . str_replace(' ', '_', $newName));
+
+            if (file_exists($oldPath)) {
+                if (file_exists($newPath)) {
+                    return back()->with('error', 'Project already exists, please choose a different name.');
+                }
+                // Check if renaming works before proceeding
+                if (rename($oldPath, $newPath)) {
+                    $project->name = $newName;
+                } else {
+                    return back()->with('error', 'Failed to rename the project folder');
+                }
+            } else {
+                return back()->with('error', 'Old project folder not found');
+            }
+        }
+
+        // Save the project and return response based on success or failure
+        if ($project->save()) {
+            return back()->with('success', 'Project updated successfully');
+        } else {
+            return back()->with('error', 'Project update failed');
+        }
     }
 }
