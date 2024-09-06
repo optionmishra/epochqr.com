@@ -66,7 +66,6 @@
         .pagination {
             margin: 0;
         }
-
     </style>
 @endsection
 @section('content')
@@ -106,7 +105,8 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="qr-codes" role="tabpanel" aria-labelledby="qr-codes-tab">
+                        <div class="tab-pane fade show active" id="qr-codes" role="tabpanel"
+                            aria-labelledby="qr-codes-tab">
                             <div class="tab-pane-body">
                                 <table class="table-borderless table-responsive table">
                                     <thead>
@@ -126,8 +126,7 @@
                                             <td><input class="qr-checkbox unarchived-row-checkbox" type="checkbox"
                                                     name="batch_action[]" value="{{ $qr->id }}"></td>
                                             <td>
-                                                <a class="title"
-                                                    href="/panel/496776/project/project-settings/898435">
+                                                <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
                                                     {{ ucfirst($qr->title) }}
                                                 </a>
                                             </td>
@@ -141,14 +140,14 @@
                                             <td>
                                                 <a title="Download"
                                                     href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                    class="btn btn-success" type="button" download="""><i class="
+                                                    class="btn btn-success" type="button" download="""><i
+                                                        class="
                                                     las la-download"></i></a>
                                                 <button title="Edit" class="btn btn-dark" type="button"
                                                     data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
                                                     data-target="#editQRModal" data-title="{{ $qr->title }}"
                                                     data-qrType="{{ $qr->type }}" data-qrtarget="{{ $qr->target }}"
-                                                    data-status="{{ $qr->status }}"><i
-                                                        class="las la-edit"></i></button>
+                                                    data-status="{{ $qr->status }}"><i class="las la-edit"></i></button>
                                                 {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
                                                             class="btn btn-danger" type="button">Delete</button></a> --}}
 
@@ -186,8 +185,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 5%" scope="col">#</th>
-                                            <th style="width: 10%" scope="col"><input class="qr-checkbox" type="checkbox"
-                                                    name="" id="archivedQRCheckAll"></th>
+                                            <th style="width: 10%" scope="col"><input class="qr-checkbox"
+                                                    type="checkbox" name="" id="archivedQRCheckAll"></th>
                                             <th style="width: 25%" scope="col">QR Name</th>
                                             <th style="width: 10%" scope="col">QR</th>
                                             <th style="width: 20%" scope="col">Short URL</th>
@@ -201,8 +200,7 @@
                                                 <td><input class="qr-checkbox archived-row-checkbox" type="checkbox"
                                                         name="batch_action[]" value="{{ $qr->id }}"></td>
                                                 <td>
-                                                    <a class="title"
-                                                        href="/panel/496776/project/project-settings/898435">
+                                                    <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
                                                         {{ ucfirst($qr->title) }}
                                                     </a>
                                                 </td>
@@ -216,7 +214,8 @@
                                                 <td>
                                                     <a title="Download"
                                                         href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                        class="btn btn-success" type="button" download="""><i class="
+                                                        class="btn btn-success" type="button" download="""><i
+                                                            class="
                                                         las la-download"></i></a>
                                                     {{-- <button title="Edit" class="btn btn-dark" type="button"
                                                     data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
@@ -293,11 +292,13 @@
 
                             <div class="col-md-12 addTargetUrl mb-3">
                                 <label class="fancy">Target Url<span class="redstar">*</span></label>
-                                <input type="url" class="form-control" name="target_url" placeholder="Enter the QR url">
+                                <input type="url" class="form-control" name="target_url"
+                                    placeholder="Enter the QR url">
                             </div>
                             <div class="col-md-12 addTargetCode mb-3">
                                 <label class="fancy">Target Code<span class="redstar">*</span></label>
-                                <input type="text" class="form-control" name="target_code" placeholder="Enter the Code">
+                                <input type="text" class="form-control" name="target_code"
+                                    placeholder="Enter the Code">
                             </div>
 
                             <div class="col-md-12">
@@ -361,8 +362,7 @@
                                 <li class="mt-1">
                                     Upload the file
                                     <div class="form-group">
-                                        <label class="fancy">Select QR Type<span
-                                                class="redstar">*</span></label>
+                                        <label class="fancy">Select QR Type<span class="redstar">*</span></label>
                                         <select name="qr_type" id="qrType" class="form-control col-md-6">
                                             <option value="url">URL</option>
                                             <option value="code">Code</option>
@@ -412,13 +412,13 @@
 
                             <div class="col-md-12 editTargetUrl mb-3">
                                 <label class="fancy">Target Url<span class="redstar">*</span></label>
-                                <input type="url" class="form-control" name="target_url" placeholder="Enter the QR url"
-                                    id="editTargetUrl">
+                                <input type="url" class="form-control" name="target_url"
+                                    placeholder="Enter the QR url" id="editTargetUrl">
                             </div>
                             <div class="col-md-12 editTargetCode mb-3">
                                 <label class="fancy">Target Code<span class="redstar">*</span></label>
-                                <input type="text" class="form-control" name="target_code" placeholder="Enter the Code"
-                                    id="editTargetCode">
+                                <input type="text" class="form-control" name="target_code"
+                                    placeholder="Enter the Code" id="editTargetCode">
                             </div>
 
                             <div class="col-md-12">
