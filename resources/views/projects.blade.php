@@ -50,6 +50,7 @@
             top: 65px;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
 @endsection
 @section('content')
     <div class="wrapper">
@@ -66,15 +67,25 @@
                         class="las la-plus font-size-18"></i> Create Project</button>
                 <div class="tabs-container my-3">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item"><span class="nav-link active cursor-pointer" data-toggle="tab"
-                                data-target="#projects" role="tab" id="projectsTab">Projects</span></li>
-                        <li class="nav-item"><span class="nav-link" data-toggle="tab" data-target="#archived_projects"
-                                role="tab" id="archivedProjectsTab">Archived</span></li>
+                        <li class="nav-item">
+                            <span type="button" class="nav-link active" data-toggle="tab" data-target="#projects"
+                                role="tab" id="projectsTab" href="#">Projects</span>
+                        </li>
+                        <li class="nav-item">
+                            <span type="button" class="nav-link" data-toggle="tab" data-target="#archived_projects"
+                                role="tab" id="archivedProjectsTab" href="#">Archived</span>
+                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="projects" role="tabpanel" aria-labelledby="home-tab">
                             <div class="tab-pane-body">
-                                <table class="table-borderless table">
+                                <table class="table-borderless table w-100">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-60">Name</th>
+                                            <th class="w-40">Actions</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         @foreach ($projects as $project)
                                             <tr>
@@ -112,7 +123,13 @@
                         <div class="tab-pane fade" id="archived_projects" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="tab-pane-body">
                                 @if (count($archived_projects))
-                                    <table class="table-borderless table">
+                                    <table class="table-borderless table w-100">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-75">Name</th>
+                                                <th class="w-25">Actions</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             @foreach ($archived_projects as $project)
                                                 <tr>
@@ -218,5 +235,9 @@
             modal.find('form').prop('action', route);
             modal.find('#editName').val(name);
         });
+    </script>
+    <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script>
+        $('.table').DataTable();
     </script>
 @endsection

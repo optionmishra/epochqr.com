@@ -67,6 +67,7 @@
             margin: 0;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
 @endsection
 @section('content')
     <div class="wrapper">
@@ -108,12 +109,14 @@
                         <div class="tab-pane fade show active" id="qr-codes" role="tabpanel"
                             aria-labelledby="qr-codes-tab">
                             <div class="tab-pane-body">
-                                <table class="table-borderless table-responsive table">
+                                <table class="table-borderless table-responsive table w-100">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%" scope="col">#</th>
-                                            <th style="width: 10%" scope="col"><input class="qr-checkbox" type="checkbox"
-                                                    name="" id="unarchivedQRCheckAll"></th>
+                                            <th style="width: 10%" scope="col">
+                                                <input class="qr-checkbox" type="checkbox" name=""
+                                                    id="unarchivedQRCheckAll">
+                                            </th>
                                             <th style="width: 25%" scope="col">QR Name</th>
                                             <th style="width: 10%" scope="col">QR</th>
                                             <th style="width: 20%" scope="col">Short URL</th>
@@ -121,83 +124,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($campaigns as $key => $qr)
-                                            <th scope="row">{{ ++$key }}</th>
-                                            <td><input class="qr-checkbox unarchived-row-checkbox" type="checkbox"
-                                                    name="batch_action[]" value="{{ $qr->id }}"></td>
-                                            <td>
-                                                <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
-                                                    {{ ucfirst($qr->title) }}
-                                                </a>
-                                            </td>
-                                            <td><img class=""
-                                                    src="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                    width="60">
-                                            </td>
-                                            <td><a
-                                                    href="{{ $domainUrl }}{{ $qr->link }}">{{ $domainUrl }}{{ $qr->link }}</a>
-                                            </td>
-                                            <td>
-                                                <a title="Download"
-                                                    href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                    class="btn btn-success" type="button" download="""><i
-                                                        class="
-                                                    las la-download"></i></a>
-                                                <button title="Edit" class="btn btn-dark" type="button"
-                                                    data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
-                                                    data-target="#editQRModal" data-title="{{ $qr->title }}"
-                                                    data-qrType="{{ $qr->type }}" data-qrtarget="{{ $qr->target }}"
-                                                    data-status="{{ $qr->status }}"><i class="las la-edit"></i></button>
-                                                {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
-                                                            class="btn btn-danger" type="button">Delete</button></a> --}}
-
-                                                <a title="Archive" href="{{ route('qr-code.archive', $qr) }}"
-                                                    class="btn btn-primary"><i class="las la-archive"></i></a>
-                                                <button title="Delete" type="button" class="btn btn-danger"
-                                                    data-toggle="modal" data-target="#deleteProjectModal"
-                                                    data-route="{{ route('qr-code.delete', $qr) }}"><i
-                                                        class="las la-trash"></i></button>
-                                            </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                @if (count($campaigns))
-                                    <div class="paginate row align-items-center m-0">
-                                        <div class="totalResult col-lg-6">
-                                            <p class="m-0">
-                                                {{ $campaigns->firstItem() }}-{{ $campaigns->lastItem() }} of
-                                                {{ $campaigns->total() }} entries
-                                                <!-- {{ $campaigns->perPage() * ($campaigns->currentPage() - 1) + $campaigns->count() }} of {{ $campaigns->total() }} entries -->
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-6 d-flex justify-content-end">
-                                            {{ $campaigns->links() }}
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
-
-                            <div class="tab-pane-body">
-                                <table class="table-borderless table-responsive table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%" scope="col">#</th>
-                                            <th style="width: 10%" scope="col"><input class="qr-checkbox"
-                                                    type="checkbox" name="" id="archivedQRCheckAll"></th>
-                                            <th style="width: 25%" scope="col">QR Name</th>
-                                            <th style="width: 10%" scope="col">QR</th>
-                                            <th style="width: 20%" scope="col">Short URL</th>
-                                            <th style="width: 30%" scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (count($archived_campaigns))
-                                            @foreach ($archived_campaigns as $key => $qr)
-                                                <th scope="row">{{ ++$key }}</th>
-                                                <td><input class="qr-checkbox archived-row-checkbox" type="checkbox"
+                                        @foreach ($campaigns as $qr)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td><input class="qr-checkbox unarchived-row-checkbox" type="checkbox"
                                                         name="batch_action[]" value="{{ $qr->id }}"></td>
                                                 <td>
                                                     <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
@@ -216,25 +146,101 @@
                                                         href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
                                                         class="btn btn-success" type="button" download="""><i
                                                             class="
+                                                    las la-download"></i></a>
+                                                    <button title="Edit" class="btn btn-dark" type="button"
+                                                        data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
+                                                        data-target="#editQRModal" data-title="{{ $qr->title }}"
+                                                        data-qrType="{{ $qr->type }}"
+                                                        data-qrtarget="{{ $qr->target }}"
+                                                        data-status="{{ $qr->status }}"><i
+                                                            class="las la-edit"></i></button>
+                                                    {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
+                                                            class="btn btn-danger" type="button">Delete</button></a> --}}
+
+                                                    <a title="Archive" href="{{ route('qr-code.archive', $qr) }}"
+                                                        class="btn btn-primary"><i class="las la-archive"></i></a>
+                                                    <button title="Delete" type="button" class="btn btn-danger"
+                                                        data-toggle="modal" data-target="#deleteProjectModal"
+                                                        data-route="{{ route('qr-code.delete', $qr) }}"><i
+                                                            class="las la-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{-- @if (count($campaigns))
+                                    <div class="paginate row align-items-center m-0">
+                                        <div class="totalResult col-lg-6">
+                                            <p class="m-0">
+                                                {{ $campaigns->firstItem() }}-{{ $campaigns->lastItem() }} of
+                                                {{ $campaigns->total() }} entries
+                                                <!-- {{ $campaigns->perPage() * ($campaigns->currentPage() - 1) + $campaigns->count() }} of {{ $campaigns->total() }} entries -->
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6 d-flex justify-content-end">
+                                            {{ $campaigns->links() }}
+                                        </div>
+                                    </div>
+                                @endif --}}
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
+                            <div class="tab-pane-body">
+                                <table class="table-borderless table-responsive table w-100">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%" scope="col">#</th>
+                                            <th style="width: 10%" scope="col"><input class="qr-checkbox"
+                                                    type="checkbox" name="" id="archivedQRCheckAll"></th>
+                                            <th style="width: 25%" scope="col">QR Name</th>
+                                            <th style="width: 10%" scope="col">QR</th>
+                                            <th style="width: 20%" scope="col">Short URL</th>
+                                            <th style="width: 30%" scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (count($archived_campaigns))
+                                            @foreach ($archived_campaigns as $qr)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td><input class="qr-checkbox archived-row-checkbox" type="checkbox"
+                                                            name="batch_action[]" value="{{ $qr->id }}"></td>
+                                                    <td>
+                                                        <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
+                                                            {{ ucfirst($qr->title) }}
+                                                        </a>
+                                                    </td>
+                                                    <td><img class=""
+                                                            src="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
+                                                            width="60">
+                                                    </td>
+                                                    <td><a
+                                                            href="{{ $domainUrl }}{{ $qr->link }}">{{ $domainUrl }}{{ $qr->link }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a title="Download"
+                                                            href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
+                                                            class="btn btn-success" type="button" download="""><i
+                                                                class="
                                                         las la-download"></i></a>
-                                                    {{-- <button title="Edit" class="btn btn-dark" type="button"
+                                                        {{-- <button title="Edit" class="btn btn-dark" type="button"
                                                     data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
                                                     data-target="#editQRModal" data-title="{{ $qr->title }}"
                                                     data-qrType="{{ $qr->type }}" data-qrtarget="{{ $qr->target }}"
                                                     data-status="{{ $qr->status }}"><i
                                                         class="las la-edit"></i></button> --}}
-                                                    {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
+                                                        {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
                                                             class="btn btn-danger" type="button">Delete</button></a> --}}
 
-                                                    {{-- <button title="Archive" class="btn btn-primary"><i
+                                                        {{-- <button title="Archive" class="btn btn-primary"><i
                                                         class="las la-archive"></i></button> --}}
-                                                    {{-- <button title="Delete" type="button" class="btn btn-danger"
+                                                        {{-- <button title="Delete" type="button" class="btn btn-danger"
                                                     data-toggle="modal" data-target="#deleteProjectModal"
                                                     data-route="{{ route('qr-code.delete', $qr) }}"><i
                                                         class="las la-trash"></i></button> --}}
-                                                    <a title="Unarchive" href="{{ route('qr-code.unarchive', $qr) }}"
-                                                        class="btn btn-dark"><i class="las la-box-open"></i></a>
-                                                </td>
+                                                        <a title="Unarchive" href="{{ route('qr-code.unarchive', $qr) }}"
+                                                            class="btn btn-dark"><i class="las la-box-open"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else
@@ -242,7 +248,7 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                @if (count($archived_campaigns))
+                                {{-- @if (count($archived_campaigns))
                                     <div class="paginate row align-items-center m-0">
                                         <div class="totalResult col-lg-6">
                                             <p class="m-0">
@@ -256,7 +262,7 @@
                                             {{ $archived_campaigns->links() }}
                                         </div>
                                     </div>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </div>
@@ -587,5 +593,9 @@
                 }
                 modal.find(`#editStatus option[value='${status}']`).prop('selected', true);
             });
+        </script>
+        <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+        <script>
+            $('.table').DataTable();
         </script>
     @endsection
