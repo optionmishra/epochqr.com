@@ -199,53 +199,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (count($archived_campaigns))
-                                            @foreach ($archived_campaigns as $qr)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td><input class="qr-checkbox archived-row-checkbox" type="checkbox"
-                                                            name="batch_action[]" value="{{ $qr->id }}"></td>
-                                                    <td>
-                                                        <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
-                                                            {{ ucfirst($qr->title) }}
-                                                        </a>
-                                                    </td>
-                                                    <td><img class=""
-                                                            src="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                            width="60">
-                                                    </td>
-                                                    <td><a
-                                                            href="{{ $domainUrl }}{{ $qr->link }}">{{ $domainUrl }}{{ $qr->link }}</a>
-                                                    </td>
-                                                    <td>
-                                                        <a title="Download"
-                                                            href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
-                                                            class="btn btn-success" type="button" download="""><i
-                                                                class="
+                                        @foreach ($archived_campaigns as $qr)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td><input class="qr-checkbox archived-row-checkbox" type="checkbox"
+                                                        name="batch_action[]" value="{{ $qr->id }}"></td>
+                                                <td>
+                                                    <a class="title" href="{{ $domainUrl }}{{ $qr->link }}">
+                                                        {{ ucfirst($qr->title) }}
+                                                    </a>
+                                                </td>
+                                                <td><img class=""
+                                                        src="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
+                                                        width="60">
+                                                </td>
+                                                <td><a
+                                                        href="{{ $domainUrl }}{{ $qr->link }}">{{ $domainUrl }}{{ $qr->link }}</a>
+                                                </td>
+                                                <td>
+                                                    <a title="Download"
+                                                        href="{{ $qrPath }}{{ str_replace(' ', '_', $project->name) }}/{{ str_replace(' ', '_', $qr->qrcode) }}"
+                                                        class="btn btn-success" type="button" download="""><i
+                                                            class="
                                                         las la-download"></i></a>
-                                                        {{-- <button title="Edit" class="btn btn-dark" type="button"
+                                                    {{-- <button title="Edit" class="btn btn-dark" type="button"
                                                     data-route="{{ route('qr-code.update', $qr) }}" data-toggle="modal"
                                                     data-target="#editQRModal" data-title="{{ $qr->title }}"
                                                     data-qrType="{{ $qr->type }}" data-qrtarget="{{ $qr->target }}"
                                                     data-status="{{ $qr->status }}"><i
                                                         class="las la-edit"></i></button> --}}
-                                                        {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
+                                                    {{-- <a href="{{ route('qr-code.delete', $qr) }}"><button
                                                             class="btn btn-danger" type="button">Delete</button></a> --}}
 
-                                                        {{-- <button title="Archive" class="btn btn-primary"><i
+                                                    {{-- <button title="Archive" class="btn btn-primary"><i
                                                         class="las la-archive"></i></button> --}}
-                                                        {{-- <button title="Delete" type="button" class="btn btn-danger"
+                                                    {{-- <button title="Delete" type="button" class="btn btn-danger"
                                                     data-toggle="modal" data-target="#deleteProjectModal"
                                                     data-route="{{ route('qr-code.delete', $qr) }}"><i
                                                         class="las la-trash"></i></button> --}}
-                                                        <a title="Unarchive" href="{{ route('qr-code.unarchive', $qr) }}"
-                                                            class="btn btn-dark"><i class="las la-box-open"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <td class="text-center" colspan="6">No archived qrs in current project</td>
-                                        @endif
+                                                    <a title="Unarchive" href="{{ route('qr-code.unarchive', $qr) }}"
+                                                        class="btn btn-dark"><i class="las la-box-open"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 {{-- @if (count($archived_campaigns))
