@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use ZipArchive;
-use App\Models\Project;
 use App\Models\Campaign;
-use Illuminate\Support\Str;
+use App\Models\Project;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use File;
+use ZipArchive;
 
 class QrController extends Controller
 {
@@ -18,6 +18,7 @@ class QrController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index(Project $project)
     {
         // dd(date('dmY-h:i:s'));
@@ -43,7 +44,7 @@ class QrController extends Controller
             'qrcode' => 'test',
             'link' => $randomid,
             'target' => $target,
-            'status' => $request->input('status')
+            'status' => $request->input('status'),
         ];
         $campaign = $project->campaigns()->create($data);
 
@@ -54,15 +55,16 @@ class QrController extends Controller
         $logo = QrCode::format('png')
             ->merge('img/QRcode.png', 0.1, true)
             ->size(200)->errorCorrection('H')
-            ->generate($domainUrl . $campaign->link);
+            ->generate($domainUrl.$campaign->link);
         // $qrName = time() . '.png';
         // $qrName = $data['title'] . '.png';
-        $qrName = $data['title'] . '-' . date('dmY-h:i:s') . '.png';
-        $output_file = 'public/campaign/' . str_replace(' ', '_', $project->name) . '/' . str_replace(' ', '_', $qrName);
+        $qrName = $data['title'].'-'.date('dmY-h:i:s').'.png';
+        $output_file = 'public/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $qrName);
         Storage::disk('local')->put($output_file, $logo);
 
         if ($campaign) {
             Campaign::where('id', '=', $campaign->id)->update(['qrcode' => $qrName]);
+
             return redirect()->route('qr-codes.index', $project);
         }
     }
@@ -126,7 +128,7 @@ class QrController extends Controller
     {
         // uploading the file
         $uploadedFile = $request->file('file');
-        $filename = time() . '-' . $uploadedFile->getClientOriginalName();
+        $filename = time().'-'.$uploadedFile->getClientOriginalName();
         $filename = str_replace(' ', '_', $filename);
 
         // Sanitize project name
@@ -134,16 +136,16 @@ class QrController extends Controller
         $projectName = preg_replace('/[^A-Za-z0-9_\-]/', '', $projectName);
 
         Storage::disk('local')->putFileAs(
-            'files/multiple_qr/' . $projectName,
+            'files/multiple_qr/'.$projectName,
             $uploadedFile,
             $filename
         );
 
         // read the file
-        $filepath = storage_path() . '/app/files/multiple_qr/' . $projectName . '/' . $filename;
+        $filepath = storage_path().'/app/files/multiple_qr/'.$projectName.'/'.$filename;
         $qrs = [];
-        if (($open = fopen($filepath, 'r')) !== FALSE) {
-            while (($data = fgetcsv($open, 10000, ",")) !== FALSE) {
+        if (($open = fopen($filepath, 'r')) !== false) {
+            while (($data = fgetcsv($open, 10000, ',')) !== false) {
                 $qrs[] = $data;
             }
             fclose($open);
@@ -151,41 +153,40 @@ class QrController extends Controller
 
         // operations on each entry
         $domainUrl = config('app.url');
-        $data = array();
+        $data = [];
         $qr_type = $request->input('qr_type');
         foreach ($qrs as $key => $qr) {
-            $qrName = $qr[0] . '-' . date('dmY-h_i_s-') . $key . '.png';
+            $qrName = $qr[0].'-'.date('dmY-h_i_s-').$key.'.png';
             $qrName = str_replace(' ', '_', $qrName);
             $qrName = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $qrName);
 
             $randomid = $this->generateBarcodeNumber();
-            if (isset($qr[0]) &&  $qr[0] != '') {
+            if (isset($qr[0]) && $qr[0] != '') {
                 $data[] = [
                     'title' => $qr[0],
                     'type' => $qr_type,
                     'qrcode' => $qrName,
                     'link' => $randomid,
                     'target' => isset($qr[1]) ? $qr[1] : null,
-                    'status' => 1
+                    'status' => 1,
                 ];
             }
         }
 
         $campaign = $project->campaigns()->createMany($data);
         foreach ($campaign as $key => $camp) {
-            $target = $qr_type == 'Code' ? $camp['target'] : $domainUrl . $camp['link'];
+            $target = $qr_type == 'Code' ? $camp['target'] : $domainUrl.$camp['link'];
             $logo = QrCode::format('png')
                 ->merge('img/QRcode.png', 0.1, true)
                 ->size(200)->errorCorrection('H')
                 ->generate($target);
 
-            $output_file = 'public/campaign/' . $projectName . '/' . $camp['qrcode'];
+            $output_file = 'public/campaign/'.$projectName.'/'.$camp['qrcode'];
             Storage::disk('local')->put($output_file, $logo);
         }
 
         return redirect()->route('qr-codes.index', $project);
     }
-
 
     public function multiple_download(Request $request)
     {
@@ -196,15 +197,15 @@ class QrController extends Controller
         // dd($campaigns[0]->qrcode);
         // return response($qrIds, '200');
         // copy all files to a folder that needs to be downloaded
-        Storage::deleteDirectory('public/download/' . $project_name);
+        Storage::deleteDirectory('public/download/'.$project_name);
         foreach ($campaigns as $campaign) {
-            Storage::copy('public/campaign/' . $project_name . '/' . str_replace(' ', '_', $campaign->qrcode), 'public/download/' . $project_name . '/' . str_replace(' ', '_', $campaign->qrcode));
+            Storage::copy('public/campaign/'.$project_name.'/'.str_replace(' ', '_', $campaign->qrcode), 'public/download/'.$project_name.'/'.str_replace(' ', '_', $campaign->qrcode));
         }
         // return response()->json($campaigns);
         $zip = new ZipArchive;
-        $fileName = $project_name . time() . '.zip';
-        if ($zip->open(public_path('/storage/download/' . $fileName), ZipArchive::CREATE) === TRUE) {
-            $files = File::files(public_path('/storage/download/' . $project_name));
+        $fileName = $project_name.time().'.zip';
+        if ($zip->open(public_path('/storage/download/'.$fileName), ZipArchive::CREATE) === true) {
+            $files = File::files(public_path('/storage/download/'.$project_name));
             foreach ($files as $key => $value) {
                 $relativeName = basename($value);
                 $zip->addFile($value, $relativeName);
@@ -212,12 +213,13 @@ class QrController extends Controller
             $zip->close();
             // dd($files);
         }
-        Storage::deleteDirectory('public/download/' . $project_name);
-        $zipFilePath = public_path('/storage/download/' . $fileName);
+        Storage::deleteDirectory('public/download/'.$project_name);
+        $zipFilePath = public_path('/storage/download/'.$fileName);
         $response = [
             'message' => 'Downloading zip file',
             'file_url' => $zipFilePath,
         ];
+
         return response()->download($zipFilePath);
         // return response()->download($zipFilePath);
         // Storage::download(public_path('/storage/download/'), $fileName);
@@ -245,12 +247,12 @@ class QrController extends Controller
         if ($campaign->title !== $request->title) {
             // rename the file
             $project = Project::find($campaign->project_id);
-            $file = 'public/campaign/' . str_replace(' ', '_', $project->name) . '/' . str_replace(' ', '_', $campaign->qrcode);
+            $file = 'public/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $campaign->qrcode);
 
             // check if file exists
             if (Storage::disk('local')->exists($file)) {
-                $qrNewName = $request->title . '-' . date('dmY-h:i:s') . '.png';
-                $new_file = 'public/campaign/' . str_replace(' ', '_', $project->name) . '/' . str_replace(' ', '_', $qrNewName);
+                $qrNewName = $request->title.'-'.date('dmY-h:i:s').'.png';
+                $new_file = 'public/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $qrNewName);
                 Storage::disk('local')->move($file, $new_file);
             }
 
@@ -269,6 +271,7 @@ class QrController extends Controller
                 'target' => $target,
             ]);
         }
+
         // if ($updation) {
         //     return response()->json([
         //         'message' => 'Campaign updated successfully',
@@ -283,17 +286,17 @@ class QrController extends Controller
         return back()->with('success', 'QR Code updated successfully');
     }
 
-
     public function destroy(Campaign $campaign)
     {
         $project = $campaign->project;
-        $file = public_path() . '/storage/campaign/' . str_replace(' ', '_', $project->name) . '/' . str_replace(' ', '_', $campaign->qrcode);
+        $file = public_path().'/storage/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $campaign->qrcode);
         if (file_exists($file)) {
             unlink($file);
         }
         if ($campaign->delete()) {
             return back()->with('message', 'QR Code Deleted successfully');
         }
+
         return back()->with('error', 'QR Code deletion Failed');
     }
 
@@ -303,6 +306,7 @@ class QrController extends Controller
         if ($campaign->save()) {
             return back()->with('success', 'QR archived successfully');
         }
+
         return back()->with('error', 'QR archive Failed');
     }
 
@@ -312,6 +316,7 @@ class QrController extends Controller
         if ($campaign->save()) {
             return back()->with('success', 'QR removed from archive successfully');
         }
+
         return back()->with('error', 'QR unarchive Failed');
     }
 
@@ -331,10 +336,9 @@ class QrController extends Controller
             }
             $campaign->save();
         }
-        $request->session()->flash('success', $campaigns_count . $message);
+        $request->session()->flash('success', $campaigns_count.$message);
         // return back();
     }
-
 
     // helper functions
 
@@ -368,9 +372,9 @@ class QrController extends Controller
     /*
      * check Directory
     */
-    public  function checkDir($directory, $id)
+    public function checkDir($directory, $id)
     {
-        if (!file_exists($directory)) {
+        if (! file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
     }

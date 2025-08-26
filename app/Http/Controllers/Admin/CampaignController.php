@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Campaign;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Project;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
 
 class CampaignController extends Controller
 {
@@ -45,11 +44,11 @@ class CampaignController extends Controller
         $randomid = $this->generateBarcodeNumber();
 
         $data = [
-            'title'         => $request->input('title'),
-            'qrcode'        => 'test',
-            'link'          => $randomid,
-            'target'    => $request->input('target_url'),
-            'status'        => $request->input('status')
+            'title' => $request->input('title'),
+            'qrcode' => 'test',
+            'link' => $randomid,
+            'target' => $request->input('target_url'),
+            'status' => $request->input('status'),
         ];
 
         $campaign = $project->campaigns()->create($data);
@@ -63,9 +62,9 @@ class CampaignController extends Controller
         $logo = QrCode::format('png')
             ->merge('img/QRcode.png', 0.1, true)
             ->size(200)->errorCorrection('H')
-            ->generate($domainUrl . '/' . $campaign->link);
-        $qrName = time() . '.png';
-        $output_file = 'public/campaign/img/' . $campaign->id . '/' . $qrName;
+            ->generate($domainUrl.'/'.$campaign->link);
+        $qrName = time().'.png';
+        $output_file = 'public/campaign/img/'.$campaign->id.'/'.$qrName;
         \Storage::disk('local')->put($output_file, $logo);
 
         if ($campaign) {
@@ -108,9 +107,9 @@ class CampaignController extends Controller
     /*
      * check Directory
     */
-    public  function checkDir($directory, $id)
+    public function checkDir($directory, $id)
     {
-        if (!file_exists($directory)) {
+        if (! file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
     }

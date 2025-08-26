@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\Click;
-use App\Models\Campaign;
 use App\Http\Controllers\Controller;
-
+use App\Models\Click;
 
 class TransactionController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *

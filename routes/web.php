@@ -1,22 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-
-//
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QrController;
-use Illuminate\Support\Facades\Artisan;
-
-// Admin
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ClickController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Admin\CampaignController;
+//
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserController;
+// Admin
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ClickController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\QrController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,18 +78,20 @@ Route::get('/archive-qr/{campaign}', [QrController::class, 'archive'])->name('qr
 Route::get('/unarchive-qr/{campaign}', [QrController::class, 'unarchive'])->name('qr-code.unarchive');
 
 // Route::get('/projects/{project}/qr-code/add', [QrController::class, 'form'])->name('qr-code.add');
-//Clear View cache:
+// Clear View cache:
 Route::get('/view-clear', function () {
     $exitCode = Artisan::call('view:clear');
+
     return '<h1>View cache cleared</h1>';
 });
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
+
     return 'Storage link has been created.';
 });
 
 //
 Route::get('/{str}', [ClickController::class, 'globalClick'])->name('click.redirect');
 // Route::get('/linkstorage', function () {
-    // Artisan::call('storage:link');
+// Artisan::call('storage:link');
 // });

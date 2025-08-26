@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Client;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\City;
 use App\Models\Addlisting;
+use App\Models\City;
 use App\Repositories\Addlisting\AddlistingInterface;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdpostController extends Controller
-{    
-    protected $addlisting; 
+{
+    protected $addlisting;
 
     /**
      * Create a new controller instance.
      *
      * @return void
-    */
+     */
     public function __construct(AddlistingInterface $addlisting)
     {
         $this->addlisting = $addlisting;
@@ -27,94 +25,92 @@ class AdpostController extends Controller
     }
 
     public function index()
-    {        
+    {
         return view('admin.index');
     }
 
     public function form()
-    {  
-        $user = Auth::user(); 
+    {
+        $user = Auth::user();
         $cities = City::select('id', 'name')->get();
+
         return view('ad-form', compact('cities'));
     }
 
     public function formProcess(Request $request)
-    {  
+    {
         $user = Auth::user();
 
-        // $this->validate(request(), [    
+        // $this->validate(request(), [
         //     'email'      => 'required|unique:users|max:255',
         //     'password'   => 'required|min:8|confirmed',
         //     'name'       => 'required',
         //     'last_name'  => 'required',
         //     'contact_no' => 'required',
 
-        // ]); 
+        // ]);
 
-        $data =[
-            'user_id'       => $user->id,
-            'category_id'   => $request->input('category_id'),
-            'city_id'       => $request->input('city_id'),
-            'street'        => $request->input('street'),
-            'postal'        => $request->input('postal'),  
-            'area'          => $request->input('area'),  
+        $data = [
+            'user_id' => $user->id,
+            'category_id' => $request->input('category_id'),
+            'city_id' => $request->input('city_id'),
+            'street' => $request->input('street'),
+            'postal' => $request->input('postal'),
+            'area' => $request->input('area'),
 
-            'age'           => $request->input('age'), 
-            'title'         => $request->input('title'), 
-            'description'   => $request->input('description'), 
-            'contact_refer' => $request->input('contact_refer'), 
-            'email'         => $request->input('email'),
-            'phone'         => $request->input('phone'), 
-            'status'        => 1,           
-            'slug'          => 1,         
-        ]; 
+            'age' => $request->input('age'),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'contact_refer' => $request->input('contact_refer'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'status' => 1,
+            'slug' => 1,
+        ];
 
         $ad = $this->addlisting->store($id = null, $data);
 
-        if($ad){
+        if ($ad) {
 
             $photo = request()->file('photo');
 
-            $directory = '../public/files/ads/'.$ad->id;    
+            $directory = '../public/files/ads/'.$ad->id;
 
-            $destinationPath = $directory."/"; 
+            $destinationPath = $directory.'/';
 
-            if ($photo){                        
+            if ($photo) {
 
-              $this->checkDir($directory, $ad->id);
+                $this->checkDir($directory, $ad->id);
 
-              $extension = $photo->getClientOriginalExtension();
+                $extension = $photo->getClientOriginalExtension();
 
-              $fileName = 'main'.$ad->id.'.'.$extension;       
+                $fileName = 'main'.$ad->id.'.'.$extension;
 
-              $photo->move($destinationPath, $fileName);               
+                $photo->move($destinationPath, $fileName);
 
-              Addlisting::where('id','=',$ad->id)->update(['photo' => $fileName]);                                   
-            } 
+                Addlisting::where('id', '=', $ad->id)->update(['photo' => $fileName]);
+            }
 
             return redirect()->route('front.ads.list');
-        }
-        else{
+        } else {
 
             return redirect('/');
         }
-                
+
     }
 
     public function list()
-    {        
+    {
         return view('list');
     }
 
     /*
      * check Directory
     */
-    public  function checkDir($directory, $id)
+    public function checkDir($directory, $id)
     {
-        if (!file_exists($directory)) {
+        if (! file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
     }
-
 }
-

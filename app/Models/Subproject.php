@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Subproject extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
 
+    protected $fillable = ['name'];
 
     public function project()
     {

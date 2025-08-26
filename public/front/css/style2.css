@@ -1,25 +1,25 @@
-body{
+body {
     font-size: 15px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
     font-weight: 400;
-    color: #101820FF;
+    color: #101820ff;
 }
 
-.content{    
-    padding-top: 65px;
+.content {
+    /* padding-top: 65px; */
     background: #fff;
 }
 
-.logo-header{
+.logo-header {
     padding: 2px 0 2px;
-    background-color: #101820FF;
-    position: fixed;
+    background-color: #101820ff;
+    /* position: fixed; */
     width: 100%;
     left: 0;
     z-index: 9999;
 }
 
-.logo-header .navbar-brand{
+.logo-header .navbar-brand {
     padding: 0;
     font-weight: bold;
     color: #fff;
@@ -27,20 +27,19 @@ body{
     margin: 0;
 }
 
-.navbar-light .navbar-brand:focus, 
-.navbar-light .navbar-brand:hover{
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
     color: #fff;
 }
 
-.logo-header .navbar-light .navbar-nav .nav-link{
+.logo-header .navbar-light .navbar-nav .nav-link {
     color: #d5d4d4;
     margin-right: 15px;
 }
 
-.logo-header ul li a.joinNow{
-    background-image: -webkit-linear-gradient(
-0deg,#ff934b 0%,#ff5e62 100%);
-    background-image: -ms-linear-gradient(0deg,#ff934b 0%,#ff5e62 100%);
+.logo-header ul li a.joinNow {
+    background-image: -webkit-linear-gradient(0deg, #ff934b 0%, #ff5e62 100%);
+    background-image: -ms-linear-gradient(0deg, #ff934b 0%, #ff5e62 100%);
     color: #fff;
     border-radius: 2px;
     padding: 8px 12px 8px;
@@ -50,7 +49,7 @@ body{
     border-radius: 50px;
 }
 
-a.btn-primary-link{
+a.btn-primary-link {
     color: #fff;
     border-radius: 2px;
     padding: 8px 20px;
@@ -62,7 +61,7 @@ a.btn-primary-link{
 }
 
 .logo-header .navbar-toggler {
-    position: relative;    
+    position: relative;
     top: 4px;
     padding: 0 0px;
 }
@@ -86,44 +85,43 @@ a.btn-primary-link{
     width: 1.5em;
 }
 
-.contactUs{
+.contactUs {
     display: inline-block;
 }
 
-.contactUs a{
+.contactUs a {
     text-decoration: none;
     font-size: 14px;
     color: #d5d4d4;
 }
 
-.contactUs .dropdown  a.dropdown-item{
+.contactUs .dropdown a.dropdown-item {
     color: #101820;
     padding: 5px 10px;
 }
 
-.contactUs a i{
-    font-size: 18px;   
+.contactUs a i {
+    font-size: 18px;
     position: relative;
     top: 3px;
 }
 
-.contactUs.postLink{
-
+.contactUs.postLink {
 }
 
-.contactUs.postLink a{
-    background: #F2AA4CFF;
+.contactUs.postLink a {
+    background: #f2aa4cff;
     padding: 10px 15px 10px;
     border-radius: 2px;
     color: #101820;
     font-weight: 600;
 }
 
-.contactUs.postLink a span{
+.contactUs.postLink a span {
     font-size: 15px;
 }
 
-.tabBarIcon{
+.tabBarIcon {
     fill: #ffffff;
     height: 1.5rem;
     width: 1.5rem;
@@ -131,39 +129,36 @@ a.btn-primary-link{
 }
 
 /****************/
-.bg-2{
-   background: #f3f3f3;
+.bg-2 {
+    background: #f3f3f3;
 }
 
-.color-white{
-    color: #fff ! important;
+.color-white {
+    color: #fff !important;
 }
 
-.color-green{
-    color: #8db654 ! important;
+.color-green {
+    color: #8db654 !important;
 }
 
-
-.sub-heading{
+.sub-heading {
     font-size: 18px;
 }
 /*****************/
 
-.page-header{
-     background: #0c244a;
-    background: linear-gradient(
-    178deg
-    ,#1c4a81 -8%,#0c244a 93%);
-        color: #fff;
-        padding: 12px 0;
+.page-header {
+    background: #0c244a;
+    background: linear-gradient(178deg, #1c4a81 -8%, #0c244a 93%);
+    color: #fff;
+    padding: 12px 0;
 }
 
-.dropdown-cat.dropdown-toggle::after {   
+.dropdown-cat.dropdown-toggle::after {
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
     content: "\eab2";
-    font-family: IcoFont!important;
+    font-family: IcoFont !important;
     border-top: none;
     border-right: none;
     border-bottom: 0;
@@ -175,20 +170,20 @@ a.btn-primary-link{
 /****************************/
 /***************************/
 
-.primary-heading{
-    color: #101820FF;
+.primary-heading {
+    color: #101820ff;
     font-weight: 600;
 }
 
-.color-secondary{
-        color: #e80c5b;
+.color-secondary {
+    color: #e80c5b;
 }
 
-.bdr-b{
+.bdr-b {
     border-bottom: 1px solid #eee;
 }
 
-.btn-white{
+.btn-white {
     background: #fff;
     color: #29296e;
     font-weight: 800;
@@ -197,76 +192,75 @@ a.btn-primary-link{
     box-shadow: rgb(10 22 70 / 15%) 0px 4px 8px 0px;
 }
 
-.light-grey{
+.light-grey {
     background: #f8f8f8;
 }
 
-.bg-red{
+.bg-red {
     background: #e80c5b;
 }
 
-.shadow-bg{
+.shadow-bg {
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgb(10 22 70 / 15%);
     -webkit-box-shadow: 0 4px 8px 0 rgb(10 22 70 / 15%);
-    -moz-box-shadow: 0 4px 8px 0 rgba(10,22,70,0.15);
+    -moz-box-shadow: 0 4px 8px 0 rgba(10, 22, 70, 0.15);
     -webkit-box-sizing: border-box;
 }
 
 /***********************/
 /**********************/
 
-.footer-section{
+.footer-section {
     padding: 55px 0 5px;
     background: #101820ff;
 }
 
-.footer-section .widget-section{
+.footer-section .widget-section {
     padding-bottom: 30px;
 }
 
-.footer-section .widget-section .widget{
-
+.footer-section .widget-section .widget {
 }
 
-.footer-section .widget-section .widget .widget-title{
+.footer-section .widget-section .widget .widget-title {
     color: #f2aa4c;
     font-weight: 400;
     font-size: 20px;
 }
 
-.footer-section .widget-section .widget .footer-links{
+.footer-section .widget-section .widget .footer-links {
     list-style: none;
     padding: 0;
 }
 
-.footer-section .widget-section .widget .footer-links li{
+.footer-section .widget-section .widget .footer-links li {
     margin-bottom: 8px;
     font-size: 15px;
 }
 
-.footer-section .widget-section .widget .footer-links li a{
+.footer-section .widget-section .widget .footer-links li a {
     color: #fff;
     font-size: 13px;
 }
 
-.social-footer{
-    border-top: 1px solid rgba(255,255,255,.1);
+.social-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 25px;
 }
 
-.social-footer ul{
+.social-footer ul {
     padding: 0;
     list-style: none;
     display: block;
-    float: right; 
+    float: right;
 }
 
-.social-footer ul li{
+.social-footer ul li {
     display: inline-block;
 }
 
-.social-footer ul li a{
+.social-footer ul li a {
     font-size: 16px;
     color: #252525;
     background: #b9b9b9;
@@ -282,13 +276,14 @@ a.btn-primary-link{
 /**********************/
 /**********************/
 
-
-
 /**********************/
 
-
-@media (min-width: 1200px){
-   .container, .container-sm, .container-md, .container-lg, .container-xl {
+@media (min-width: 1200px) {
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl {
         max-width: 1355px;
-    }  
-} 
+    }
+}

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Click;
@@ -29,6 +28,7 @@ class AdminController extends Controller
             'total_qrs' => Campaign::count(),
             'total_clicks' => Click::count(),
         ];
+
         return view('admin.index')->with($data);
     }
 }

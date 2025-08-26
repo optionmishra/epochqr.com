@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -13,38 +12,44 @@ class ProjectController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $user = auth()->user();
         // dd($user);
         $projects = $user->projects()->where('archived', 0)->orderBy('name', 'asc')->paginate(50);
         $archived_projects = $user->projects()->where('archived', 1)->orderBy('name', 'asc')->paginate(50);
+
         // $projects = Project::paginate(10);
         return view('projects', compact('projects', 'archived_projects'));
     }
+
     public function store(Request $request)
     {
-        $user =  auth()->user();
+        $user = auth()->user();
         $project_exist = Project::where('name', $request->input('name'))->get();
 
         if ($project_exist->count() > 0) {
             return back()->with('error', 'Project already exists, please choose a different name.');
         } else {
             $data = [
-                'name'         => $request->input('name'),
+                'name' => $request->input('name'),
             ];
             $create_project = $user->projects()->create($data);
             if ($create_project) {
                 return back()->with('message', 'Project Created Successfully!');
             }
+
             return back()->with('error', 'Project Creation Failed!');
         }
     }
+
     public function destroy(Project $project)
     {
         if ($project->delete()) {
-            return back()->with('message', 'Project "' . $project->name . '" Deleted successfully!');
+            return back()->with('message', 'Project "'.$project->name.'" Deleted successfully!');
         }
+
         return back()->with('error', 'Delete Failed!');
     }
 
@@ -54,6 +59,7 @@ class ProjectController extends Controller
         if ($project->save()) {
             return back()->with('success', 'Project archived successfully');
         }
+
         return back()->with('error', 'Project archive Failed');
     }
 
@@ -63,6 +69,7 @@ class ProjectController extends Controller
         if ($project->save()) {
             return back()->with('success', 'Project unarchived successfully');
         }
+
         return back()->with('error', 'Project unarchive Failed');
     }
 
@@ -77,8 +84,8 @@ class ProjectController extends Controller
 
         if ($oldName !== $newName) {
             // Correctly resolve the file paths using Laravel's helper functions
-            $oldPath = public_path('storage/campaign/' . str_replace(' ', '_', $oldName));
-            $newPath = public_path('storage/campaign/' . str_replace(' ', '_', $newName));
+            $oldPath = public_path('storage/campaign/'.str_replace(' ', '_', $oldName));
+            $newPath = public_path('storage/campaign/'.str_replace(' ', '_', $newName));
 
             if (file_exists($oldPath)) {
                 if (file_exists($newPath)) {

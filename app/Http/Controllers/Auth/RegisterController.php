@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -41,10 +41,12 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
     public function index()
     {
         return view('register');
     }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -59,16 +61,18 @@ class RegisterController extends Controller
         ]);
         if ($user) {
             auth()->attempt($request->only('email', 'password'));
+
             return redirect()->route('projects.index', auth()->user());
         }
+
         return back()->withErrors([
             'email' => 'Registration Failed.',
         ]);
     }
+
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -83,7 +87,6 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)

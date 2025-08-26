@@ -29,8 +29,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('line-awesome/css/line-awesome.min.css') }}">
-    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/style2.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     {{-- Call custom inline styles --}}
     @yield('styles')
 </head>

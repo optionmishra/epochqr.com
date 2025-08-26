@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,11 +39,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     public function store(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if (auth()->attempt($request->only('email', 'password'))) {
@@ -53,10 +53,13 @@ class LoginController extends Controller
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
+
                 return redirect()->route('home')->with('error', 'Your Account is suspended, please contact Admin.');
             }
+
             return redirect()->route('projects.index');
         }
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);

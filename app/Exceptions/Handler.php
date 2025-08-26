@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
-use Auth;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -46,14 +45,14 @@ class Handler extends ExceptionHandler
         if (in_array('admin', $exception->guards())) {
             return $request->expectsJson()
                 ? response()->json([
-                      'message' => $exception->getMessage()
+                    'message' => $exception->getMessage(),
                 ], 401)
                 : redirect()->guest(route('login'));
         }
-    
+
         return $request->expectsJson()
             ? response()->json([
-                  'message' => $exception->getMessage()
+                'message' => $exception->getMessage(),
             ], 401)
             : redirect()->guest(route('login'));
     }

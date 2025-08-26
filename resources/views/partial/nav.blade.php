@@ -1,4 +1,31 @@
+<!-- Top Contact Strip -->
+<!-- Main Header -->
 <div class="logo-header">
+    <div class="container-fluid bg-primary text-white py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="row gap-5 w-100 justify-content-center">
+                <div class="d-flex gap-3 align-items-center col-sm-12 col-md-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:mayank@epochstudio.net" class="text-white text-decoration-none">
+                        mayank@epochstudio.net
+                    </a>
+                </div>
+                <div class="d-flex gap-3 align-items-center col-sm-12 col-md-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:+919818073878" class="text-white text-decoration-none">
+                        +91 98180 73878
+                    </a>
+                </div>
+                <div class="d-flex gap-3 align-items-center col-sm-12 col-md-3">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <a href="whatsapp://send?phone=+919818073878" class="text-white text-decoration-none">
+                        +91 98180 73878
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-dark p-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">EQR</a>

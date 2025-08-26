@@ -2,34 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Click;
-use App\Models\Campaign;
 use Agent;
-use Carbon\Carbon;
-use App\Models\Goal;
+use App\Models\Campaign;
+use App\Models\Click;
 
 class ClickController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    ///////////////////////////////
+    // /////////////////////////////
     //  Global Click
-    ///////////////////////////////
+    // /////////////////////////////
     protected function globalClick($offerlink)
     {
 
         $campaign = Campaign::where('link', $offerlink)->first();
 
-        if (!$campaign) {
+        if (! $campaign) {
             return response('Failed');
         }
 
@@ -40,14 +34,14 @@ class ClickController extends Controller
         /****************/
 
         $data = [
-            'campaign_id'       => $campaign->id,
-            'ip_address'        => $ip,
-            //'location'          => $location,
-            'device'            => $device_data['device'],
-            'os'                => $device_data['os'],
-            'os_version'        => $device_data['os_version'],
-            'browser'           => $device_data['browser'],
-            'browser_version'   => $device_data['browser_version'],
+            'campaign_id' => $campaign->id,
+            'ip_address' => $ip,
+            // 'location'          => $location,
+            'device' => $device_data['device'],
+            'os' => $device_data['os'],
+            'os_version' => $device_data['os_version'],
+            'browser' => $device_data['browser'],
+            'browser_version' => $device_data['browser_version'],
         ];
 
         $click = Click::create($data);
@@ -67,7 +61,7 @@ class ClickController extends Controller
     //
     public function getIp()
     {
-        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+        foreach (['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'] as $key) {
             if (array_key_exists($key, $_SERVER) === true) {
                 foreach (explode(',', $_SERVER[$key]) as $ip) {
                     $ip = trim($ip); // just to be safe
@@ -77,16 +71,16 @@ class ClickController extends Controller
                 }
             }
         }
+
         return request()->ip(); // it will return server ip when no client ip found
     }
-
 
     /*
     * Get Device info
     */
     public function getDeviceinfo()
     {
-        $device_info = array();
+        $device_info = [];
 
         $device_info['os'] = Agent::platform();
         $device_info['os_version'] = Agent::version($device_info['os']);
