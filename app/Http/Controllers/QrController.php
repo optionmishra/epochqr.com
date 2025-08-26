@@ -190,39 +190,88 @@ class QrController extends Controller
 
     public function multiple_download(Request $request)
     {
-        // dd('hello');
-        $project_name = str_replace(' ', '_', $request->input('project'));
-        $qrIDs = $request->input('qrIDs');
-        $campaigns = Campaign::whereIn('id', $qrIDs)->get();
-        // dd($campaigns[0]->qrcode);
-        // return response($qrIds, '200');
-        // copy all files to a folder that needs to be downloaded
-        Storage::deleteDirectory('public/download/'.$project_name);
-        foreach ($campaigns as $campaign) {
-            Storage::copy('public/campaign/'.$project_name.'/'.str_replace(' ', '_', $campaign->qrcode), 'public/download/'.$project_name.'/'.str_replace(' ', '_', $campaign->qrcode));
-        }
-        // return response()->json($campaigns);
-        $zip = new ZipArchive;
-        $fileName = $project_name.time().'.zip';
-        if ($zip->open(public_path('/storage/download/'.$fileName), ZipArchive::CREATE) === true) {
-            $files = File::files(public_path('/storage/download/'.$project_name));
-            foreach ($files as $key => $value) {
-                $relativeName = basename($value);
-                $zip->addFile($value, $relativeName);
-            }
-            $zip->close();
-            // dd($files);
-        }
-        Storage::deleteDirectory('public/download/'.$project_name);
-        $zipFilePath = public_path('/storage/download/'.$fileName);
-        $response = [
-            'message' => 'Downloading zip file',
-            'file_url' => $zipFilePath,
-        ];
+        try {
+            $project_name = str_replace(' ', '_', $request->input('project'));
+            $qrIDs = $request->input('qrIDs');
+            $campaigns = Campaign::whereIn('id', $qrIDs)->get();
 
-        return response()->download($zipFilePath);
-        // return response()->download($zipFilePath);
-        // Storage::download(public_path('/storage/download/'), $fileName);
+            if ($campaigns->isEmpty()) {
+                return response()->json(['error' => 'No campaigns found'], 404);
+            }
+
+            $zip = new ZipArchive;
+            $fileName = $project_name.'_'.time().'.zip';
+            $zipFilePath = public_path('storage/download/'.$fileName);
+
+            // Ensure directory exists
+            $downloadDir = dirname($zipFilePath);
+            if (! is_dir($downloadDir)) {
+                mkdir($downloadDir, 0755, true);
+            }
+
+            // Open zip file
+            if ($zip->open($zipFilePath, ZipArchive::CREATE) !== true) {
+                return response()->json(['error' => 'Cannot create zip file'], 500);
+            }
+
+            $domainUrl = config('app.url');
+
+            switch ($request->fileType) {
+                case 'svg':
+                    foreach ($campaigns as $campaign) {
+                        $svgContent = QrCode::format('svg')
+                            ->merge('img/QRcode.png', 0.1, true)
+                            ->size(300)->errorCorrection('H')
+                            ->generate($domainUrl.$campaign->link);
+
+                        $baseFilename = pathinfo($campaign->qrcode, PATHINFO_FILENAME);
+                        $filename = str_replace(' ', '_', $baseFilename).'.svg';
+                        $zip->addFromString($filename, $svgContent);
+                    }
+                    break;
+
+                case 'eps':
+                    foreach ($campaigns as $campaign) {
+                        $epsContent = QrCode::format('eps')
+                            ->merge('img/QRcode.png', 0.1, true)
+                            ->size(300)->errorCorrection('H')
+                            ->generate($domainUrl.$campaign->link);
+
+                        $baseFilename = pathinfo($campaign->qrcode, PATHINFO_FILENAME);
+                        $filename = str_replace(' ', '_', $baseFilename).'.eps';
+                        $zip->addFromString($filename, $epsContent);
+                    }
+                    break;
+
+                default: // PNG case
+                    foreach ($campaigns as $campaign) {
+                        $pngFileName = str_replace(' ', '_', $campaign->qrcode);
+                        $pngFilePath = public_path('storage/campaign/'.$project_name.'/'.$pngFileName);
+
+                        if (file_exists($pngFilePath)) {
+                            $zip->addFile($pngFilePath, $pngFileName);
+                        } else {
+                            // Log missing file or handle error
+                            \Log::warning('PNG file not found: '.$pngFilePath);
+                        }
+                    }
+                    break;
+            }
+
+            $zip->close();
+
+            // Check if zip file was created successfully
+            if (! file_exists($zipFilePath)) {
+                return response()->json(['error' => 'Failed to create zip file'], 500);
+            }
+
+            return response()->download($zipFilePath)->deleteFileAfterSend();
+
+        } catch (\Exception $e) {
+            \Log::error('Multiple download error: '.$e->getMessage());
+
+            return response()->json(['error' => 'Internal server error: '.$e->getMessage()], 500);
+        }
     }
 
     public function update(Request $request, Campaign $campaign)

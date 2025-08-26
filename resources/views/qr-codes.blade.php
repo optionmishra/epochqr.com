@@ -89,8 +89,12 @@
                     <span>Batch actions: </span>
                     <button class="btn btn-outline-dark btn-sm mx-2" id="btn_batch_archive"
                         data-token="{{ csrf_token() }}">Archive/Unarchive</button>
-                    <button class="btn btn-outline-dark btn-sm mx-1" id="btn_batch_download"
-                        data-token="{{ csrf_token() }}">Download</button>
+                    <button class="btn btn-outline-dark btn-sm mx-1 btn_batch_download" data-token="{{ csrf_token() }}"
+                        data-file="png">Download (png)</button>
+                    <button class="btn btn-outline-dark btn-sm mx-1 btn_batch_download" data-token="{{ csrf_token() }}"
+                        data-file="svg">Download (svg)</button>
+                    <button class="btn btn-outline-dark btn-sm mx-1 btn_batch_download" data-token="{{ csrf_token() }}"
+                        data-file="eps">Download (eps)</button>
                 </div>
                 <div class="tabs-container my-3">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -506,18 +510,20 @@
                 });
 
                 // Batch QR Download
-                $("#btn_batch_download").on('click', function(event) {
+                $(".btn_batch_download").on('click', function(event) {
                     var qrIDs = $("table input[name='batch_action[]']:checked").map(function() {
                         return $(this).val();
                     }).get();
                     // console.log(qrIDs);
                     let token = $(this).attr('data-token');
                     let project = `{{ str_replace(' ', '_', $project->name) }}`;
+                    let fileType = $(this).attr('data-file');
 
                     // data to be sent to the POST request
                     let data = {
-                        project: project,
-                        qrIDs: qrIDs
+                        project,
+                        qrIDs,
+                        fileType
                     }
 
                     fetch(`${window.location.origin}/multiple-qr-download`, {
