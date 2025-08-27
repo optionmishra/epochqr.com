@@ -224,7 +224,6 @@
 @endsection
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{ asset('front/js/welcome.js') }}"></script>
     <script>
         // Edit Project Modal
         $('#editProjectModal').on('show.bs.modal', function(e) {
@@ -235,6 +234,29 @@
             modal.find('form').prop('action', route);
             modal.find('#editName').val(name);
         });
+
+        $("#deleteProjectModal").on("show.bs.modal", function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var route = button.data("route"); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find("#confirmDelete").prop("href", route);
+        });
+
+        // Make active tab persist on page refresh
+        $('span[data-toggle="tab"]').on("show.bs.tab", function (e) {
+            // console.log($(e.target).attr('id'));
+            localStorage.setItem("activeTab", $(e.target).attr("id"));
+        });
+        var activeTab = localStorage.getItem("activeTab");
+        if (activeTab) {
+            // Bootstrap 5 way to show a tab programmatically
+            var tabElement = document.getElementById(activeTab);
+            if (tabElement) {
+                new bootstrap.Tab(tabElement).show();
+            }
+        }
     </script>
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>

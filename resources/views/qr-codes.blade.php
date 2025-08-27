@@ -454,7 +454,6 @@
     @endsection
     @section('scripts')
         @parent
-        {{-- <script type="text/javascript" src="{{ asset('front/js/welcome.js') }}"></script> --}}
         <script>
             // Toggle all checkboxes
             $('#unarchivedQRCheckAll').change(function(e) {
@@ -595,9 +594,46 @@
                 }
                 modal.find(`#editStatus option[value='${status}']`).prop('selected', true);
             });
+
+
+            $("#deleteProjectModal").on("show.bs.modal", function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var route = button.data("route"); // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this);
+                modal.find("#confirmDelete").prop("href", route);
+            });
+
+            // Make active tab persist on page refresh
+            $('span[data-toggle="tab"]').on("show.bs.tab", function (e) {
+                // console.log($(e.target).attr('id'));
+                localStorage.setItem("activeTab", $(e.target).attr("id"));
+            });
+            var activeTab = localStorage.getItem("activeTab");
+            if (activeTab) {
+                // Bootstrap 5 way to show a tab programmatically
+                var tabElement = document.getElementById(activeTab);
+                if (tabElement) {
+                    new bootstrap.Tab(tabElement).show();
+                }
+            }
         </script>
         <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
         <script>
-            $('.table').DataTable();
+        $(document).ready(function () {
+            $('.table').DataTable({
+                "columns": [
+                    null, // #
+                    {
+                        "orderable": false
+                    }, // Checkbox column
+                    null, // QR Name
+                    null, // QR
+                    null, // Short URL
+                    null // Actions
+                ]
+            });
+            });
         </script>
     @endsection

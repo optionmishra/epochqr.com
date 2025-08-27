@@ -151,7 +151,6 @@
 @endsection
 @section('scripts')
     @parent
-    <script type="text/javascript" src="{{ asset('front/js/welcome.js') }}"></script>
     <script>
         $('#deleteProjectModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
