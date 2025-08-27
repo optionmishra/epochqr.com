@@ -23,8 +23,8 @@ class QrController extends Controller
     {
         // dd(date('dmY-h:i:s'));
         // $campaigns = Campaign::get();
-        $campaigns = $project->campaigns()->where('archived', 0)->orderBy('title', 'asc')->paginate(50);
-        $archived_campaigns = $project->campaigns()->where('archived', 1)->orderBy('title', 'asc')->paginate(50);
+        $campaigns = $project->campaigns()->where('archived', 0)->orderBy('title', 'asc')->get();
+        $archived_campaigns = $project->campaigns()->where('archived', 1)->orderBy('title', 'asc')->get();
         $qrPath = '/storage/campaign/';
         $domainUrl = config('app.url');
         // dd($domainUrl);
