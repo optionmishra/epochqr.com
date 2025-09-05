@@ -294,13 +294,15 @@ class QrController extends Controller
         // $campaign->save();
 
         if ($campaign->title !== $request->title) {
-            // rename the file
+            // Clean the title to remove BOM and other problematic characters
+            $cleanTitle = preg_replace('/[\x00-\x1F\x7F\xEF\xBB\xBF]/', '', $request->title);
+            $cleanTitle = preg_replace('/[^\w\-_\.]/', '_', trim($cleanTitle));
+
             $project = Project::find($campaign->project_id);
             $file = 'public/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $campaign->qrcode);
 
-            // check if file exists
             if (Storage::disk('local')->exists($file)) {
-                $qrNewName = $request->title.'-'.date('dmY-h:i:s').'.png';
+                $qrNewName = $cleanTitle.'-'.date('dmY-h:i:s').'.png';
                 $new_file = 'public/campaign/'.str_replace(' ', '_', $project->name).'/'.str_replace(' ', '_', $qrNewName);
                 Storage::disk('local')->move($file, $new_file);
             }
@@ -331,8 +333,17 @@ class QrController extends Controller
         //         'message' => 'Campaign not updated',
         //         'status' => 'error',
         //     ]);
-        // }
-        return back()->with('success', 'QR Code updated successfully');
+        if ($updation) {
+            return response()->json([
+                'message' => 'QR Code updated successfully',
+                'status' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'QR Code not updated',
+                'status' => 'error',
+            ]);
+        }
     }
 
     public function destroy(Campaign $campaign)
