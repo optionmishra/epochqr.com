@@ -632,43 +632,45 @@
                     null, // QR
                     null, // Short URL
                     null // Actions
-                ]
+                ],
+                stateSave: true,
+                stateDuration: 60 * 60,
             });
 
-            $('form').on('submit', function(e) {
-                e.preventDefault();
+            // $('form').on('submit', function(e) {
+            //     e.preventDefault();
 
-                const $form = $(this);
-                const $submitBtn = $form.find('button[type="submit"]');
-                const originalText = $submitBtn.text();
+            //     const $form = $(this);
+            //     const $submitBtn = $form.find('button[type="submit"]');
+            //     const originalText = $submitBtn.text();
 
-                // Show loading state
-                $submitBtn.text('Saving...').prop('disabled', true);
+            //     // Show loading state
+            //     $submitBtn.text('Saving...').prop('disabled', true);
 
-                $.ajax({
-                    url: $form.attr('action'),
-                    type: $form.attr('method'),
-                    data: $form.serialize(),
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(data) {
-                        console.log('Success:', data);
-                        toastr.success('QR updated successfully!', 'Success');
-                        // Close modal if needed
-                        const modalElement = $form.closest('.modal');
-                        modalElement.find('[data-dismiss="modal"]').trigger('click');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', xhr.responseJSON ? xhr.responseJSON.message : error);
-                        toastr.error(xhr.responseJSON ? xhr.responseJSON.message : 'An error occurred while updating the QR. Please try again.', 'Error');
-                    },
-                    complete: function() {
-                        // Reset button state
-                        $submitBtn.text(originalText).prop('disabled', false);
-                    }
-                });
-            });
+            //     $.ajax({
+            //         url: $form.attr('action'),
+            //         type: $form.attr('method'),
+            //         data: $form.serialize(),
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         },
+            //         success: function(data) {
+            //             console.log('Success:', data);
+            //             toastr.success('QR updated successfully!', 'Success');
+            //             // Close modal if needed
+            //             const modalElement = $form.closest('.modal');
+            //             modalElement.find('[data-dismiss="modal"]').trigger('click');
+            //         },
+            //         error: function(xhr, status, error) {
+            //             console.error('Error:', xhr.responseJSON ? xhr.responseJSON.message : error);
+            //             toastr.error(xhr.responseJSON ? xhr.responseJSON.message : 'An error occurred while updating the QR. Please try again.', 'Error');
+            //         },
+            //         complete: function() {
+            //             // Reset button state
+            //             $submitBtn.text(originalText).prop('disabled', false);
+            //         }
+            //     });
+            // });
 
             });
         </script>

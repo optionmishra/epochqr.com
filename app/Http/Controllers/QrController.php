@@ -325,25 +325,16 @@ class QrController extends Controller
 
         // if ($updation) {
         //     return response()->json([
-        //         'message' => 'Campaign updated successfully',
+        //         'message' => 'QR Code updated successfully',
         //         'status' => 'success',
         //     ]);
         // } else {
         //     return response()->json([
-        //         'message' => 'Campaign not updated',
+        //         'message' => 'QR Code not updated',
         //         'status' => 'error',
         //     ]);
-        if ($updation) {
-            return response()->json([
-                'message' => 'QR Code updated successfully',
-                'status' => 'success',
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'QR Code not updated',
-                'status' => 'error',
-            ]);
-        }
+        // }
+        return back()->with('success', 'QR Code updated successfully');
     }
 
     public function destroy(Campaign $campaign)
