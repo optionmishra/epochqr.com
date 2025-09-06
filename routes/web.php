@@ -50,7 +50,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Login
 // Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/login', [HomeController::class, 'index'])->name('login');
+Route::get('/login', [HomeController::class, 'index']);
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'store'])->name('login');
 
 // Admin Login
